@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../models/trip.dart';
+import '../../domain/entities/trip.dart';
 import 'dart:math' show min, max;
 
 class TripDetailScreen extends StatefulWidget {

@@ -13,8 +13,8 @@ class SplashScreenPage extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFF000066), // Dark blue
-              Color(0xFF000033), // Darker blue
+              Color(0xFF000066),
+              Color(0xFF000033),
             ],
           ),
         ),
@@ -22,11 +22,10 @@ class SplashScreenPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // TODO: Replace with actual logo
               const FlutterLogo(size: 100),
               const SizedBox(height: 20),
               const Text(
-                'Welcome to Frenzi',
+                'Welcome to Ride',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,

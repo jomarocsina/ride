@@ -1,14 +1,14 @@
-import '../models/trip.dart';
+import '../../domain/entities/trip.dart';
+import '../../domain/repositories/trip_repository.dart';
+import '../models/trip_model.dart';
 
-class TripService {
-  // In a real app, this would fetch data from an API
+class TripRepositoryImpl implements TripRepository {
+  @override
   Future<List<Trip>> getTrips() async {
-    // Simulate network delay
     await Future.delayed(const Duration(seconds: 1));
 
-    // Return sample data
     return [
-      Trip(
+      TripModel(
         startLocation: 'London Bridge Station',
         destination: 'Heathrow Airport',
         startLatitude: 51.5079,
@@ -18,7 +18,7 @@ class TripService {
         date: DateTime.now().subtract(const Duration(days: 1)),
         fare: 45.50,
       ),
-      Trip(
+      TripModel(
         startLocation: 'Canary Wharf',
         destination: 'Oxford Street',
         startLatitude: 51.5054,
@@ -28,7 +28,7 @@ class TripService {
         date: DateTime.now().subtract(const Duration(days: 2)),
         fare: 25.75,
       ),
-      Trip(
+      TripModel(
         startLocation: 'King\'s Cross Station',
         destination: 'The O2 Arena',
         startLatitude: 51.5320,
