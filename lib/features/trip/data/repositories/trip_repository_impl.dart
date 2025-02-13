@@ -13,23 +13,19 @@ class TripRepositoryImpl implements TripRepository {
 
   @override
   Future<List<Trip>> getTrips() async {
-    // Simulate API failure (1 in 3 chance)
     if (_random.nextInt(3) == 0) {
       throw Exception(
           '[Mock] Failed to load trips - This is a simulated API failure');
     }
 
-    // Try to get cached data first
     final cachedTrips = await _localDataSource.getCachedTrips();
     if (cachedTrips != null) {
       _trips = cachedTrips;
       return cachedTrips;
     }
 
-    // Simulate network delay
     await Future.delayed(const Duration(seconds: 1));
 
-    // Initialize empty list if no cached data
     _trips = [];
     await _localDataSource.cacheTrips(_trips);
     return _trips;
@@ -37,7 +33,6 @@ class TripRepositoryImpl implements TripRepository {
 
   @override
   Future<void> addTrip(Trip trip) async {
-    // Convert Trip to TripModel if it's not already
     final tripModel = trip is TripModel
         ? trip
         : TripModel(
@@ -51,16 +46,13 @@ class TripRepositoryImpl implements TripRepository {
             fare: trip.fare,
           );
 
-    // Add to local list
     _trips.insert(0, tripModel);
 
-    // Update cache
     await _localDataSource.cacheTrips(_trips);
   }
 
   @override
   Future<void> deleteTrip(Trip trip) async {
-    // Remove from local list
     _trips.removeWhere(
       (t) =>
           t.startLatitude == trip.startLatitude &&
@@ -70,7 +62,6 @@ class TripRepositoryImpl implements TripRepository {
           t.date == trip.date,
     );
 
-    // Update cache
     await _localDataSource.cacheTrips(_trips);
   }
 }
